@@ -16,6 +16,7 @@ public class Spacecraft extends Actor {
     public static final int SPACECRAFT_STRAIGHT = 0;
     public static final int SPACECRAFT_UP = 1;
     public static final int SPACECRAFT_DOWN = 2;
+    public static final int SPACECRAFT_SHOOT = 3;
 
     // Paràmetres de la spacecraft
     private Vector2 position;
@@ -57,6 +58,10 @@ public class Spacecraft extends Actor {
                 }
                 break;
             case SPACECRAFT_STRAIGHT:
+                break;
+            case SPACECRAFT_SHOOT:
+                Disparo disp = new Disparo(getX(), getY(), 12, 12);
+
                 break;
         }
 

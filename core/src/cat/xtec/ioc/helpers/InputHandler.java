@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import cat.xtec.ioc.objects.Disparo;
 import cat.xtec.ioc.objects.Spacecraft;
 import cat.xtec.ioc.screens.GameScreen;
 
@@ -89,7 +90,12 @@ public class InputHandler implements InputProcessor {
             // guardada és que va cap avall
             if (previousY < screenY) {
                 spacecraft.goDown();
-            } else {
+
+            } else if(previousY == screenY){
+                //ELSE IF PARA DISPARO
+
+
+            }else {
                 // En cas contrari cap a dalt
                 spacecraft.goUp();
             }
