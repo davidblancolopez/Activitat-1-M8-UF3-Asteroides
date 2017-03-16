@@ -3,6 +3,7 @@ package cat.xtec.ioc.objects;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.actions.RepeatAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RotateByAction;
 
@@ -13,6 +14,9 @@ import cat.xtec.ioc.utils.Methods;
 import cat.xtec.ioc.utils.Settings;
 
 public class Asteroid extends Scrollable {
+    //Variable añadida para la colision del asteroide con la bala.
+    private Rectangle collisionRect;
+
 
     private Circle collisionCircle;
 
@@ -25,6 +29,9 @@ public class Asteroid extends Scrollable {
 
         // Creem el cercle
         collisionCircle = new Circle();
+
+        // Añadida la creacion del rectangulo de colisiones.
+        collisionRect = new Rectangle();
 
         /* Accions */
         r = new Random();
@@ -62,7 +69,8 @@ public class Asteroid extends Scrollable {
         // Actualitzem el cercle de col·lisions (punt central de l'asteroid i el radi.
         collisionCircle.set(position.x + width / 2.0f, position.y + width / 2.0f, width / 2.0f);
 
-
+        //AÑADIDO
+        collisionRect.set(position.x, position.y + 3, width, 10);
     }
 
     @Override
@@ -95,4 +103,15 @@ public class Asteroid extends Scrollable {
         }
         return false;
     }
+
+    /**
+     * Metodo añadido para reaccion del asteroide cuando hay una colision.
+     * @return
+     */
+    public Rectangle getCollisionRect() {
+        return collisionRect;
+    }
+
+
+
 }

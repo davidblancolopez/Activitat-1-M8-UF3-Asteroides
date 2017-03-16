@@ -9,13 +9,15 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import cat.xtec.ioc.objects.Disparo;
+
 public class AssetManager {
 
     // Sprite Sheet
     public static Texture sheet;
 
     // Nau i fons
-    public static TextureRegion spacecraft, spacecraftDown, spacecraftUp, background;
+    public static TextureRegion spacecraft, spacecraftDown, spacecraftUp, background, bala;
 
     // Asteroid
     public static TextureRegion[] asteroid;
@@ -79,6 +81,21 @@ public class AssetManager {
         // Fons de pantalla
         background = new TextureRegion(sheet, 0, 177, 480, 135);
         background.flip(false, true);
+
+
+
+
+
+
+        //Disparo
+        bala = new TextureRegion(sheet,532,310,12,3);
+        bala.flip(false, true);
+
+        //bulletAnim = new Animation(0.05F, bullet);
+        //bulletAnim.setPlayMode(Animation.PlayMode.NORMAL);
+
+
+
 
         /******************************* Sounds *************************************/
         // Explosió
