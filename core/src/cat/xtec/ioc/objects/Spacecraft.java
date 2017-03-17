@@ -17,22 +17,23 @@ public class Spacecraft extends Actor {
     public static final int SPACECRAFT_STRAIGHT = 0;
     public static final int SPACECRAFT_UP = 1;
     public static final int SPACECRAFT_DOWN = 2;
-    public static final int SPACECRAFT_SHOOT = 3;
 
     // Paràmetres de la spacecraft
     private Vector2 position;
+    private float velocityX, velocityY;
     private int width, height;
     private int direction;
     private Stage stage;
 
     private Rectangle collisionRect;
 
-    public Spacecraft(float x, float y, int width, int height) {
+    public Spacecraft(float x, float y, int width, int height, Stage stage) {
 
         // Inicialitzem els arguments segons la crida del constructor
         this.width = width;
         this.height = height;
         position = new Vector2(x, y);
+        this.stage = stage;
 
         // Inicialitzem la spacecraft a l'estat normal
         direction = SPACECRAFT_STRAIGHT;
@@ -61,10 +62,6 @@ public class Spacecraft extends Actor {
                 break;
             case SPACECRAFT_STRAIGHT:
                 break;
-            case SPACECRAFT_SHOOT:
-                Disparo disp = new Disparo(getX(), getY(), 12, 12);
-
-                break;
         }
 
         collisionRect.set(position.x, position.y + 3, width, 10);
@@ -92,18 +89,35 @@ public class Spacecraft extends Actor {
     // Canviem la direcció de la spacecraft: Puja
     public void goUp() {
         direction = SPACECRAFT_UP;
+        velocityY = -Settings.SPACECRAFT_VELOCITY;
     }
 
     // Canviem la direcció de la spacecraft: Baixa
     public void goDown() {
         direction = SPACECRAFT_DOWN;
+        velocityY = Settings.SPACECRAFT_VELOCITY;
     }
 
     // Posem la spacecraft al seu estat original
     public void goStraight() {
+
         direction = SPACECRAFT_STRAIGHT;
+        velocityX = Settings.SPACECRAFT_VELOCITY_X;
     }
 
+    public void goBack()
+    {
+        direction = SPACECRAFT_STRAIGHT;
+        velocityX = - Settings.SPACECRAFT_VELOCITY_X;
+
+    }
+    public void pause()
+
+    {
+        velocityX = 0;
+        velocityY = 0;
+        direction = SPACECRAFT_STRAIGHT;
+    }
     // Obtenim el TextureRegion depenent de la posició de la spacecraft
     public TextureRegion getSpacecraftTexture() {
 
@@ -134,7 +148,6 @@ public class Spacecraft extends Actor {
         super.draw(batch, parentAlpha);
         batch.draw(getSpacecraftTexture(), position.x, position.y, width, height);
     }
-
 
     public Rectangle getCollisionRect() {
         return collisionRect;

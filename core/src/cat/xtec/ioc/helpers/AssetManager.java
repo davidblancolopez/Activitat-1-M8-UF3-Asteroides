@@ -16,7 +16,7 @@ public class AssetManager {
     // Sprite Sheet
     public static Texture sheet;
 
-    // Nau i fons
+    // Nau i fons i BALA
     public static TextureRegion spacecraft, spacecraftDown, spacecraftUp, background, bala;
 
     // Asteroid
@@ -88,7 +88,7 @@ public class AssetManager {
 
 
         //Disparo
-        bala = new TextureRegion(sheet,532,310,12,3);
+        bala = new TextureRegion(sheet,108,0,108,5);
         bala.flip(false, true);
 
         //bulletAnim = new Animation(0.05F, bullet);

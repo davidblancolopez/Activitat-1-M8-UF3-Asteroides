@@ -1,6 +1,7 @@
 package cat.xtec.ioc.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -32,6 +33,10 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.SPACE){
+            spacecraft.shoot();
+            return true;
+        }
         return false;
     }
 
@@ -91,9 +96,6 @@ public class InputHandler implements InputProcessor {
             if (previousY < screenY) {
                 spacecraft.goDown();
 
-            } else if(previousY == screenY){
-                spacecraft.shoot();
-                return true;
             }else {
                 // En cas contrari cap a dalt
                 spacecraft.goUp();
