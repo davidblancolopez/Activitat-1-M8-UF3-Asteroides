@@ -8,7 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
+import java.sql.Time;
+
 import cat.xtec.ioc.helpers.AssetManager;
+import cat.xtec.ioc.screens.GameScreen;
 import cat.xtec.ioc.utils.Settings;
 
 public class Spacecraft extends Actor {
@@ -24,6 +27,8 @@ public class Spacecraft extends Actor {
     private int width, height;
     private int direction;
     private Stage stage;
+
+
 
     private Rectangle collisionRect;
 
@@ -157,7 +162,9 @@ public class Spacecraft extends Actor {
         for (Actor actor : stage.getActors()
                 ) {
             if(actor.getName() != null && actor.getName().equalsIgnoreCase("spacecraft")){
-                stage.addActor(new Disparo(actor.getX()+actor.getWidth(), actor.getY()+actor.getHeight()/2, 22, 20));
+
+                    stage.addActor(new Disparo(actor.getX() + actor.getWidth(), actor.getY() + actor.getHeight() / 2, 22, 4));
+
 
                 break;
             }

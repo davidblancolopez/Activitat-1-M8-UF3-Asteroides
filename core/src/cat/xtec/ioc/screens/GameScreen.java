@@ -48,6 +48,13 @@ public class GameScreen implements Screen {
     private int puntuacioJoc;
 
 
+    //TIEMPO
+
+    public int tiempo = 0;
+
+
+
+
     public GameScreen(Batch prevBatch, Viewport prevViewport) {
 
         // Iniciem la música
@@ -176,6 +183,7 @@ public class GameScreen implements Screen {
         batch.begin();
         puntuacio.setText(AssetManager.font, "SCORE: " + puntuacioJoc++);
         AssetManager.font.draw(batch, puntuacio, Settings.GAME_WIDTH-170, 2);
+
 
         if (scrollHandler.collides(spacecraft)) {
             String mostraPuntuacio = Integer.toString(puntuacioJoc);

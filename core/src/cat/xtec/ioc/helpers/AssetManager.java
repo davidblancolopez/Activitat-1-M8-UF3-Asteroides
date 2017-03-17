@@ -88,7 +88,7 @@ public class AssetManager {
 
 
         //Disparo
-        bala = new TextureRegion(sheet,108,0,108,5);
+        bala = new TextureRegion(sheet,108,0,17,5);
         bala.flip(false, true);
 
         //bulletAnim = new Animation(0.05F, bullet);
