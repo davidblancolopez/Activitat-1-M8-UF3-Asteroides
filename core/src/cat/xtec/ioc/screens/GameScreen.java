@@ -55,7 +55,17 @@ public class GameScreen implements Screen {
 
 
 
-    public GameScreen(Batch prevBatch, Viewport prevViewport) {
+    public GameScreen(Batch prevBatch, Viewport prevViewport, String dificultad) {
+
+
+        //Para la dificultad
+        if (dificultad.equals("facil")) {
+            Settings.ASTEROID_GAP += 30;
+            Settings.SPACECRAFT_VELOCITY += 20;
+        } else if (dificultad.equals("mig")) {
+            Settings.ASTEROID_GAP += 25;
+            Settings.SPACECRAFT_VELOCITY += 10;
+        }
 
         // Iniciem la música
         AssetManager.music.play();
