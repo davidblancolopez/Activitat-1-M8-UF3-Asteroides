@@ -154,6 +154,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        int contador = 0;
 
         // Dibuixem tots els actors de l'stage
         stage.draw();
@@ -168,23 +169,36 @@ public class GameScreen implements Screen {
                 updateRunning(delta);
                 break;
             case READY:
-                updateReady();
+                if (contador == 0) {
+                    updateReady(true, false);
+                    contador = 1;
+                } else {
+                    updateReady(false,true);
+                }
                 break;
-
         }
 
         //drawElements();
 
     }
 
-    private void updateReady() {
-
+    private void updateReady(boolean primeraVegada, boolean mostrar) {
         // Dibuixem el text al centre de la pantalla
         batch.begin();
-        AssetManager.font.draw(batch, textLayout, (Settings.GAME_WIDTH / 2) - textLayout.width / 2, (Settings.GAME_HEIGHT / 2) - textLayout.height / 2);
+        if (!primeraVegada) {
+            AssetManager.font.draw(batch, textLayout, (Settings.GAME_WIDTH / 2) - textLayout.width / 2, (Settings.GAME_HEIGHT / 2) - textLayout.height / 2);
+            //AssetManager.font.draw(batch, textPuntuacio, (Settings.GAME_WIDTH / 2) - textDificil.width / 2, (Settings.GAME_HEIGHT / 2) - textMig.height / 2);
+        } else {
+            if (mostrar) {
+                AssetManager.font.draw(batch, textLayout, Settings.GAME_WIDTH / 2 - textLayout.width / 2, Settings.GAME_HEIGHT / 2 - textLayout.height / 2);
+                textLayout.setText(AssetManager.font, "Torna a intentar-ho");
+            } else {
+                AssetManager.font.draw(batch, textLayout, Settings.GAME_WIDTH / 2 - textLayout.width / 2, Settings.GAME_HEIGHT / 2 - textLayout.height / 2);
+                textLayout.setText(AssetManager.font, "Som-hi!");
+            }
+        }
         //stage.addActor(textLbl);
         batch.end();
-
     }
 
     private void updateRunning(float delta) {
