@@ -43,6 +43,10 @@ public class GameScreen implements Screen {
 
     // Preparem el textLayout per escriure text
     private GlyphLayout textLayout;
+    //Añadidos
+    private GlyphLayout puntuacio;
+    private int puntuacioJoc;
+
 
     public GameScreen(Batch prevBatch, Viewport prevViewport) {
 

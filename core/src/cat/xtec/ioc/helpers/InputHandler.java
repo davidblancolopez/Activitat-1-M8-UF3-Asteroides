@@ -92,9 +92,8 @@ public class InputHandler implements InputProcessor {
                 spacecraft.goDown();
 
             } else if(previousY == screenY){
-                //ELSE IF PARA DISPARO
-
-
+                spacecraft.shoot();
+                return true;
             }else {
                 // En cas contrari cap a dalt
                 spacecraft.goUp();

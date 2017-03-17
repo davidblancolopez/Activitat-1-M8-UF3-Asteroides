@@ -104,13 +104,6 @@ public class Asteroid extends Scrollable {
         return false;
     }
 
-    /**
-     * Metodo añadido para reaccion del asteroide cuando hay una colision.
-     * @return
-     */
-    public Rectangle getCollisionRect() {
-        return collisionRect;
-    }
 
 
 

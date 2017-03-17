@@ -20,40 +20,36 @@ import cat.xtec.ioc.utils.Settings;
 
 public class Disparo extends Actor {
 
-    private Rectangle collisionRect;
+    private Rectangle balaCollision;
     private Vector2 position;
     private int width, height;
+    private int direccion;
 
-    public Disparo(float x, float y, int width, int height) {
-
+    public Disparo(float x, float y, int width, int height){
+        position = new Vector2(x, y);
         this.width = width;
         this.height = height;
-        position = new Vector2(x, y);
 
-        // Creem el rectangle de col·lisions
-        collisionRect = new Rectangle();
-        RepeatAction repeat = new RepeatAction();
-        repeat.setCount(RepeatAction.FOREVER);
-
-        // Per a la gestio de hit
+        balaCollision = new Rectangle();
         setBounds(position.x, position.y, width, height);
-        setTouchable(Touchable.enabled);
+
     }
 
-    public TextureRegion getBulletTexture() {
-        return AssetManager.bala;
-    }
+    public TextureRegion getBalaTexture(){ return AssetManager.bala; }
 
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        this.position.x += 60*delta;
+    }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        batch.draw(getBulletTexture(), position.x, position.y, width, height);
+        batch.draw(getBalaTexture(), position.x, position.y, width, height);
     }
 
-    public Rectangle getCollisionRect() {
-        return collisionRect;
-    }
 
 }
 
