@@ -74,6 +74,9 @@ public class GameScreen implements Screen {
         // Iniciem el GlyphLayout
         textLayout = new GlyphLayout();
         textLayout.setText(AssetManager.font, "Are you\nready?");
+        //AÑADIDO
+        puntuacio = new GlyphLayout();
+        puntuacioJoc = 0;
 
         currentState = GameState.READY;
 
@@ -169,14 +172,21 @@ public class GameScreen implements Screen {
 
     private void updateRunning(float delta) {
         stage.act(delta);
+        //AÑADIDO
+        batch.begin();
+        puntuacio.setText(AssetManager.font, "SCORE: " + puntuacioJoc++);
+        AssetManager.font.draw(batch, puntuacio, Settings.GAME_WIDTH-170, 2);
 
         if (scrollHandler.collides(spacecraft)) {
-            // Si hi ha hagut col·lisió: Reproduïm l'explosió i posem l'estat a GameOver
+            String mostraPuntuacio = Integer.toString(puntuacioJoc);
+            puntuacioJoc = 0;
             AssetManager.explosionSound.play();
             stage.getRoot().findActor("spacecraft").remove();
-            textLayout.setText(AssetManager.font, "Game Over :'(");
+            textLayout.setText(AssetManager.font, "Game Over\n" +
+                    "Puntuacion total : " + mostraPuntuacio);
             currentState = GameState.GAMEOVER;
         }
+        batch.end();
     }
 
     private void updateGameOver(float delta) {
